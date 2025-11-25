@@ -76,6 +76,7 @@ starry-process = "0.2"
 starry-signal = "0.2"
 starry-vm = "0.2"
 
+starry-vdso = { path = "./starry-vdso"}
 starry-core = { path = "./core" }
 starry-api = { path = "./api" }
 
@@ -136,6 +137,7 @@ linux-raw-sys.workspace = true
 starry-process.workspace = true
 starry-signal.workspace = true
 
+starry-vdso.workspace = true
 starry-core.workspace = true
 starry-api.workspace = true
 

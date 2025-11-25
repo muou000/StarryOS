@@ -26,8 +26,9 @@ use memory_addr::{MemoryAddr, PAGE_SIZE_4K, VirtAddr};
 use ouroboros::self_referencing;
 use starry_vm::{VmError, VmIo, VmResult};
 use uluru::LRUCache;
+use starry_vdso;
 
-use crate::config::{USER_SPACE_BASE, USER_SPACE_SIZE};
+use crate::{config::{USER_SPACE_BASE, USER_SPACE_SIZE}};
 
 /// Creates a new empty user address space.
 pub fn new_user_aspace_empty() -> AxResult<AddrSpace> {
@@ -247,9 +248,11 @@ impl ElfLoader {
             ldso.as_ref()
                 .map_or_else(|| elf.entry(), |ldso| ldso.entry()),
         );
-        let auxv = elf
+        let mut auxv = elf
             .aux_vector(PAGE_SIZE_4K, ldso.map(|elf| elf.base()))
             .collect::<Vec<_>>();
+
+        starry_vdso::vdso::load_vdso_data(&mut auxv, uspace)?;
 
         Ok(Ok((entry, auxv)))
     }
