@@ -37,7 +37,7 @@ pub fn load_vdso_data(auxv: &mut Vec<AuxEntry>, uspace: &mut AddrSpace) -> AxRes
     }
 
     let (vdso_paddr_page, vdso_bytes, vdso_size, vdso_page_offset, alloc_info) =
-        prepare_vdso_pages(vdso_kstart, vdso_kend)?;
+        prepare_vdso_pages(vdso_kstart, vdso_kend).map_err(|_| AxError::InvalidExecutable)?;
 
     let mut alloc_guard = VdsoAllocGuard::new(alloc_info);
 
@@ -96,13 +96,13 @@ fn map_vvar_and_push_aux(auxv: &mut Vec<AuxEntry>, vdso_user_addr: usize, uspace
     };
 
     if VVAR_PAGES > 1 {
-        if let Err(_) = uspace
+        if uspace
             .map_linear(
                 vvar_user_addr.into(),
                 vvar_paddr.into(),
                 VVAR_PAGES * PAGE_SIZE_4K,
                 MappingFlags::READ | MappingFlags::USER,
-            )
+            ).is_err()
         {
             if let Some(a) = alloc_vaddr_op {
                 global_allocator().dealloc_pages(a, VVAR_PAGES, UsageKind::Global);

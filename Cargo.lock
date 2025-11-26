@@ -361,6 +361,14 @@ dependencies = [
 
 [[package]]
 name = "axerrno"
+version = "0.1.0"
+source = "git+https://github.com/Starry-OS/axerrno.git?rev=f1e2bca#f1e2bcac2c016fefb568c8af62b8c893aab9fba5"
+dependencies = [
+ "log",
+]
+
+[[package]]
+name = "axerrno"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4a88b1fa2ce97a6ff4ce31ba9fda3065730ca4d77a1ba50dec000fc04f1fb686"
@@ -448,7 +456,7 @@ dependencies = [
  "axconfig",
  "axcpu",
  "axlog",
- "axplat",
+ "axplat 0.3.0",
  "axplat-aarch64-qemu-virt",
  "axplat-loongarch64-qemu-virt",
  "axplat-riscv64-qemu-virt",
@@ -546,10 +554,24 @@ dependencies = [
 
 [[package]]
 name = "axplat"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f4de04c54b63bf2ca1ff202733d2516da49d7779649cdb2f9c4ecf22909e6810"
+dependencies = [
+ "axplat-macros 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bitflags 2.10.0",
+ "const-str",
+ "crate_interface",
+ "kspin",
+ "memory_addr",
+]
+
+[[package]]
+name = "axplat"
 version = "0.3.0"
 source = "git+https://github.com/arceos-org/axplat_crates.git?tag=dev-v03#72b148262f4f58a3a6c64c23d0f377e6469b662a"
 dependencies = [
- "axplat-macros",
+ "axplat-macros 0.1.0 (git+https://github.com/arceos-org/axplat_crates.git?tag=dev-v03)",
  "bitflags 2.10.0",
  "const-str",
  "crate_interface",
@@ -569,7 +591,7 @@ dependencies = [
  "arm_pl011",
  "arm_pl031",
  "axcpu",
- "axplat",
+ "axplat 0.3.0",
  "int_ratio",
  "kspin",
  "lazyinit",
@@ -585,7 +607,7 @@ source = "git+https://github.com/arceos-org/axplat_crates.git?tag=dev-v03#72b148
 dependencies = [
  "axconfig-macros",
  "axcpu",
- "axplat",
+ "axplat 0.3.0",
  "axplat-aarch64-peripherals",
  "log",
  "page_table_entry",
@@ -598,7 +620,7 @@ source = "git+https://github.com/arceos-org/axplat_crates.git?tag=dev-v03#72b148
 dependencies = [
  "axconfig-macros",
  "axcpu",
- "axplat",
+ "axplat 0.3.0",
  "chrono",
  "kspin",
  "lazyinit",
@@ -606,6 +628,17 @@ dependencies = [
  "loongArch64",
  "page_table_entry",
  "uart_16550",
+]
+
+[[package]]
+name = "axplat-macros"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f90dfaee06a112fe4f810c60af1a86bc080af2172185b491cacc307b84dff748"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.111",
 ]
 
 [[package]]
@@ -625,7 +658,7 @@ source = "git+https://github.com/arceos-org/axplat_crates.git?tag=dev-v03#72b148
 dependencies = [
  "axconfig-macros",
  "axcpu",
- "axplat",
+ "axplat 0.3.0",
  "kspin",
  "lazyinit",
  "log",
@@ -643,7 +676,7 @@ source = "git+https://github.com/Starry-OS/axplat-riscv64-visionfive2.git?tag=de
 dependencies = [
  "axconfig-macros",
  "axcpu",
- "axplat",
+ "axplat 0.3.0",
  "kspin",
  "lazyinit",
  "log",
@@ -661,7 +694,7 @@ source = "git+https://github.com/arceos-org/axplat_crates.git?tag=dev-v03#72b148
 dependencies = [
  "axconfig-macros",
  "axcpu",
- "axplat",
+ "axplat 0.3.0",
  "bitflags 2.10.0",
  "heapless 0.9.2",
  "int_ratio",
@@ -704,7 +737,7 @@ dependencies = [
  "axlog",
  "axmm",
  "axnet",
- "axplat",
+ "axplat 0.3.0",
  "axtask",
  "chrono",
  "crate_interface",
@@ -1855,7 +1888,7 @@ version = "0.2.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "85eae3c4ed2f50dcfe72643da4befc30deadb458a9b590d720cde2f2b1e97da9"
 dependencies = [
- "zerocopy 0.8.26",
+ "zerocopy 0.8.30",
 ]
 
 [[package]]
@@ -2365,8 +2398,8 @@ name = "starry-vdso"
 version = "0.1.0"
 source = "git+https://github.com/muou000/starry-vdso.git?rev=5d8de2f#5d8de2fa911af236f65ebfa936ad2f1630d60e79"
 dependencies = [
- "axerrno",
- "axplat",
+ "axerrno 0.1.0",
+ "axplat 0.2.0",
  "log",
  "rand 0.8.5",
  "rand_chacha",
