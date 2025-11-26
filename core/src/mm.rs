@@ -26,7 +26,6 @@ use memory_addr::{MemoryAddr, PAGE_SIZE_4K, VirtAddr};
 use ouroboros::self_referencing;
 use starry_vm::{VmError, VmIo, VmResult};
 use uluru::LRUCache;
-use starry_vdso;
 
 use crate::{config::{USER_SPACE_BASE, USER_SPACE_SIZE}};
 
@@ -252,7 +251,7 @@ impl ElfLoader {
             .aux_vector(PAGE_SIZE_4K, ldso.map(|elf| elf.base()))
             .collect::<Vec<_>>();
 
-        starry_vdso::vdso::load_vdso_data(&mut auxv, uspace)?;
+        crate::vdso::load_vdso_data(&mut auxv, uspace)?;
 
         Ok(Ok((entry, auxv)))
     }

@@ -2223,6 +2223,7 @@ dependencies = [
 name = "starry-core"
 version = "0.1.0"
 dependencies = [
+ "axalloc",
  "axbacktrace",
  "axconfig",
  "axerrno",
@@ -2253,6 +2254,8 @@ dependencies = [
  "memory_addr",
  "ouroboros",
  "percpu",
+ "rand 0.8.5",
+ "rand_chacha",
  "scope-local",
  "slab",
  "spin 0.10.0",
@@ -2296,15 +2299,11 @@ dependencies = [
 [[package]]
 name = "starry-vdso"
 version = "0.1.0"
+source = "git+https://github.com/muou000/starry-vdso.git?rev=5d8de2f#5d8de2fa911af236f65ebfa936ad2f1630d60e79"
 dependencies = [
- "axalloc",
  "axerrno",
- "axhal",
- "axlog",
- "axmm",
- "axsync",
- "kernel-elf-parser",
- "memory_addr",
+ "axplat",
+ "log",
  "rand 0.8.5",
  "rand_chacha",
  "xmas-elf",

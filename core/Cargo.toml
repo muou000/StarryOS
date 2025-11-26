@@ -21,6 +21,7 @@ axmm.workspace = true
 axpoll.workspace = true
 axsync.workspace = true
 axtask.workspace = true
+axalloc.workspace = true
 bitflags.workspace = true
 bytemuck = { workspace = true, features = ["derive"] }
 cfg-if.workspace = true
@@ -49,6 +50,8 @@ strum = { version = "0.27.2", default-features = false, features = ["derive"] }
 uluru = "3.1.0"
 weak-map = "0.1.1"
 xmas-elf = "0.9"
+rand = { version = "0.8", default-features = false }
+rand_chacha = { version = "0.3", default-features = false }
 
 [target.'cfg(not(any(target_arch = "aarch64", target_arch = "loongarch64")))'.dependencies]
 axmm = { workspace = true, features = ["copy"] }
