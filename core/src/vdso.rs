@@ -13,8 +13,9 @@ use axmm::AddrSpace;
 use kernel_elf_parser::{AuxEntry, AuxType};
 use memory_addr::{MemoryAddr, PAGE_SIZE_4K};
 use axalloc::{global_allocator, UsageKind};
-use rand::{SeedableRng, RngCore};
-use rand_chacha::ChaCha12Rng;
+use rand_pcg::rand_core::RngCore;
+use rand_pcg::Pcg64Mcg;
+use axhal::time::monotonic_time_nanos;
 
 use starry_vdso::vdso::{VDSO_DATA, VdsoData, prepare_vdso_pages, vdso_data_paddr, VdsoAllocGuard};
 
@@ -26,7 +27,10 @@ pub fn load_vdso_data(auxv: &mut Vec<AuxEntry>, uspace: &mut AddrSpace) -> AxRes
     const VDSO_USER_ADDR_BASE: usize = 0x7f00_0000;
     const VDSO_ASLR_PAGES: usize = 256;
 
-    let mut rng = ChaCha12Rng::from_seed([0u8; 32]);
+    let seed: u128 = (monotonic_time_nanos() as u128)
+        ^ ((vdso_kstart as u128).rotate_left(13))
+        ^ ((vdso_kend as u128).rotate_left(37));
+    let mut rng = Pcg64Mcg::new(seed);
     let page_off: usize = (rng.next_u64() as usize) % VDSO_ASLR_PAGES;
     let vdso_user_addr = VDSO_USER_ADDR_BASE + page_off * PAGE_SIZE_4K;
     axlog::info!("vdso_kstart: {vdso_kstart:#x}, vdso_kend: {vdso_kend:#x}",);
