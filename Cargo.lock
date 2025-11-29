@@ -1798,15 +1798,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "ppv-lite86"
-version = "0.2.21"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85eae3c4ed2f50dcfe72643da4befc30deadb458a9b590d720cde2f2b1e97da9"
-dependencies = [
- "zerocopy 0.8.30",
-]
-
-[[package]]
 name = "prettyplease"
 version = "0.2.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1888,16 +1879,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rand_chacha"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6c10a63a0fa32252be49d21e7709d4d4baf8d231c2dbce1eaa8141b9b127d88"
-dependencies = [
- "ppv-lite86",
- "rand_core 0.6.4",
-]
-
-[[package]]
 name = "rand_core"
 version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1908,6 +1889,15 @@ name = "rand_core"
 version = "0.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "99d9a13982dcf210057a8a78572b2217b667c3beacbf3a0d8b454f6f82837d38"
+
+[[package]]
+name = "rand_pcg"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b48ac3f7ffaab7fac4d2376632268aa5f89abdb55f7ebf8f4d11fffccb2320f7"
+dependencies = [
+ "rand_core 0.9.3",
+]
 
 [[package]]
 name = "raw-cpuid"
@@ -2266,7 +2256,7 @@ dependencies = [
  "ouroboros",
  "percpu",
  "rand 0.8.5",
- "rand_chacha",
+ "rand_pcg",
  "scope-local",
  "slab",
  "spin 0.10.0",
@@ -2310,14 +2300,12 @@ dependencies = [
 
 [[package]]
 name = "starry-vdso"
-version = "0.1.0"
-source = "git+https://github.com/muou000/starry-vdso.git?rev=5d8de2f#5d8de2fa911af236f65ebfa936ad2f1630d60e79"
+version = "0.1.1"
+source = "git+https://github.com/muou000/starry-vdso.git?rev=8a0b5eed8fda7ebfa9783855db5efcd6f365e111#8a0b5eed8fda7ebfa9783855db5efcd6f365e111"
 dependencies = [
  "axerrno 0.1.0",
  "axplat 0.2.0",
  "log",
- "rand 0.8.5",
- "rand_chacha",
  "xmas-elf",
 ]
 

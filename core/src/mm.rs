@@ -27,7 +27,7 @@ use ouroboros::self_referencing;
 use starry_vm::{VmError, VmIo, VmResult};
 use uluru::LRUCache;
 
-use crate::{config::{USER_SPACE_BASE, USER_SPACE_SIZE}};
+use crate::config::{USER_SPACE_BASE, USER_SPACE_SIZE};
 
 /// Creates a new empty user address space.
 pub fn new_user_aspace_empty() -> AxResult<AddrSpace> {

@@ -76,7 +76,8 @@ starry-process = "0.2"
 starry-signal = { version = "0.2", git = "https://github.com/Starry-OS/starry-signal.git", tag = "dev-v02" }
 starry-vm = "0.2"
 
-starry-vdso = { git = "https://github.com/muou000/starry-vdso.git", rev = "5d8de2f"}
+starry-vdso = { git = "https://github.com/muou000/starry-vdso.git", rev = "8a0b5eed8fda7ebfa9783855db5efcd6f365e111" }
+#starry-vdso = { path = "./starry-vdso"}
 starry-core = { path = "./core" }
 starry-api = { path = "./api" }
 
